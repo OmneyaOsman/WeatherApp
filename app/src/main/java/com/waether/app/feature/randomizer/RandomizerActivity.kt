@@ -12,10 +12,13 @@ class RandomizerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_randomizer)
-
         val viewModel = ViewModelProviders.of(this).get(RandomizerViewModel::class.java)
         viewModel.numberLiveData.observe(this, Observer {
             random_number_text_view.text = it?.toString()
         })
+
+        increment_button.setOnClickListener {
+            viewModel.incrementNumber()
+        }
     }
 }
