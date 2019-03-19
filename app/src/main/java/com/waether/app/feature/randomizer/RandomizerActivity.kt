@@ -31,6 +31,7 @@ class RandomizerActivity : AppCompatActivity() {
             .interval(INTERVAL_IN , FINISH_AFTER,TimeUnit.SECONDS , Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { random_number_text_view.text = randomNumberGenerator().toInt().toString()}
+
 //        timerSubscription = Observable.interval(1 , TimeUnit.SECONDS)
 //            .subscribeOn(Schedulers.io())
 //            .observeOn(AndroidSchedulers.mainThread())
