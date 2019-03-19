@@ -5,10 +5,13 @@ import android.arch.lifecycle.ViewModel
 import com.omni.usescases.numberIncrementer
 
 
-private const val DEFAULT_VALUE = 0
-private const val INCREMENT_BY_VALUE = 0
+ const val DEFAULT_VALUE = 0
+
 
 class RandomizerViewModel : ViewModel() {
+
+
+
 
     val numberLiveData = MutableLiveData<Int>()
 
@@ -20,7 +23,4 @@ class RandomizerViewModel : ViewModel() {
         numberIncrementer(numberLiveData)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }
