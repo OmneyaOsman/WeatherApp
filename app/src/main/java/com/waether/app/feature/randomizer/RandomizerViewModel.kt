@@ -4,8 +4,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 
 
-private const val DEFAULT_VALUE = 0
-private const val INCREMENT_BY_VALUE = 0
+ const val DEFAULT_VALUE = 0
+ const val INCREMENT_BY_VALUE = 0
 
 class RandomizerViewModel : ViewModel() {
 
@@ -21,5 +21,8 @@ class RandomizerViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+    }
+
+    fun incrementNumber() {
     }
 }
