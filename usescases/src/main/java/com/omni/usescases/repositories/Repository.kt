@@ -13,6 +13,7 @@ class CitiesRepository(private val database: WeatherDatabase = weatherDatabase) 
     fun searchCitiesByName(name: String): List<City> = database.citiesDao.queryCitiesByName(name)
 
     fun retrieveFavoritieCitiesIds(): List<FavoriteCityId> = database.favoritiesDao.queryAll()
+
     fun retrieveCitiesByIds(citiesIds: List<Long>): List<City> = database.citiesDao.queryCitiesById(citiesIds)
 
     fun addFavoriteCityId(favoriteCityId: FavoriteCityId) = database.favoritiesDao.insert(favoriteCityId)
