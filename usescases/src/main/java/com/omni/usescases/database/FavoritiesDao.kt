@@ -13,8 +13,8 @@ interface FavoritiesDao {
     fun queryAll():List<FavoriteCityId>
 
     @Insert
-    fun  add(favoriteCityId:FavoriteCityId)
+    fun  insert(favoriteCityId:FavoriteCityId)
 
     @Delete
-    fun  remove(favoriteCityId:FavoriteCityId)
+    fun  delete(favoriteCityId:FavoriteCityId)
 }
