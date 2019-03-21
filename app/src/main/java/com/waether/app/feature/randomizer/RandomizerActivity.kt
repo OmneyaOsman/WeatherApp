@@ -17,8 +17,8 @@ class RandomizerActivity : AppCompatActivity() {
             random_number_text_view.text = it?.toString()
         })
 
-        increment_button.setOnClickListener {
-            viewModel.incrementNumber()
-        }
+//        increment_button.setOnClickListener {
+//            viewModel.incrementNumber()
+//        }
     }
 }
