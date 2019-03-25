@@ -7,10 +7,13 @@ import com.omni.entities.City
 @Dao
 interface CitiesDao {
 
-    @Query("select * from City   where City.name like '%' ||:name|| '%' ")
-    fun queryCitiesByName(name:String) :List<City>
+    @Query("select * from City ")
+    fun queryAll() : List<City>
 
-    @Query("select * from City   where City.id in (:ids)")
-    fun queryCitiesById(ids:List<Long>) :List<City>
+    @Query("select * from City where City.name like '%' || :name || '%' ")
+    fun queryCitiesByName(name: String) : List<City>
+
+    @Query("select * from City where City.id in (:ids)")
+    fun queryCitiesByIds(ids: List<Long>) : List<City>
 
 }
