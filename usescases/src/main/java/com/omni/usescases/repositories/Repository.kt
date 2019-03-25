@@ -5,18 +5,48 @@ import com.omni.entities.FavoriteCityId
 import com.omni.usescases.database.WeatherDatabase
 import com.omni.usescases.database.weatherDatabase
 
-val cittiesRepository by lazy {
+val citiesRepository by lazy {
     CitiesRepository()
 }
 
-class CitiesRepository(private val database: WeatherDatabase = weatherDatabase) {
-    fun searchCitiesByName(name: String): List<City> = database.citiesDao.queryCitiesByName(name)
+interface CitiesRepository {
 
-    fun retrieveFavoritieCitiesIds(): List<FavoriteCityId> = database.favoritiesDao.queryAll()
+    fun searchCitiesByName(name: String): List<City>
 
-    fun retrieveCitiesByIds(citiesIds: List<Long>): List<City> = database.citiesDao.queryCitiesById(citiesIds)
+    fun retrieveFavoriteCitiesIds(): List<FavoriteCityId>
 
-    fun addFavoriteCityId(favoriteCityId: FavoriteCityId) = database.favoritiesDao.insert(favoriteCityId)
+    fun retrieveCitiesByIds(citiesIds: List<Long>): List<City>
 
-    fun removeFavoriteCityId(favoriteCityId: FavoriteCityId) = database.favoritiesDao.delete(favoriteCityId)
+    fun addFavoriteCityId(favoriteCityId: FavoriteCityId): Unit
+
+    fun removeFavoriteCityId(favoriteCityId: FavoriteCityId): Unit
+}
+
+val citiesRepository: CitiesRepository by lazy { CitiesRepositoryImplementer() }
+
+interface CitiesRepository {
+
+    fun searchCitiesByName(name: String): List<City>
+
+    fun retrieveFavoriteCitiesIds(): List<FavoriteCityId>
+
+    fun retrieveCitiesByIds(citiesIds: List<Long>): List<City>
+
+    fun addFavoriteCityId(favoriteCityId: FavoriteCityId): Unit
+
+    fun removeFavoriteCityId(favoriteCityId: FavoriteCityId): Unit
+}
+
+class CitiesRepositoryImplementer(private val database: WeatherDatabase = weatherDatabase) : CitiesRepository {
+
+    override fun searchCitiesByName(name: String) = database.citiesDao.queryCitiesByName(name)
+
+    override fun retrieveFavoriteCitiesIds() = database.favoritesDao.queryAll()
+
+    override fun retrieveCitiesByIds(citiesIds: List<Long>) = database.citiesDao.queryCitiesByIds(citiesIds)
+
+    override fun addFavoriteCityId(favoriteCityId: FavoriteCityId) = database.favoritesDao.insert(favoriteCityId)
+
+    override fun removeFavoriteCityId(favoriteCityId: FavoriteCityId) = database.favoritesDao.delete(favoriteCityId)
+
 }

@@ -16,5 +16,5 @@ val weatherDatabase by lazy{
 @TypeConverters(CoordinatesTypeConverter::class)
 abstract class WeatherDatabase :RoomDatabase(){
     abstract val citiesDao:CitiesDao
-    abstract val favoritiesDao :FavoritiesDao
+    abstract val favoritesDao :FavoritiesDao
 }

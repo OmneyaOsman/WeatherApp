@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
     <string name="increment">Increment</string>
+    <string name="favorites">Favorities</string>
+    <string name="city_name">city name</string>
+    <string name="search">search</string>
 </resources>
