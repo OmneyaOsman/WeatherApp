@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.omni.entities.City
 import com.omni.usescases.engine.toMutableLiveData
 import com.omni.usescases.repositories.CitiesRepositoryMock
+import com.omni.usescases.usecases.SearchCityByNameUseCase
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test

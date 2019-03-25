@@ -1,4 +1,4 @@
-package com.omni.usescases
+package com.omni.usescases.usecases
 
 import android.arch.lifecycle.MutableLiveData
 
