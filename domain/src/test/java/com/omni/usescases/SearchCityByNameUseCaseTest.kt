@@ -6,6 +6,7 @@ import com.omni.entities.City
 import com.omni.usescases.engine.toMutableLiveData
 import com.omni.usescases.repositories.CitiesRepositoryMock
 import com.omni.usescases.usecases.SearchCityByNameUseCase
+import com.omni.usescases.usecases.fakeResultIdsList
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
@@ -107,9 +108,8 @@ class SearchCityByNameUseCaseTest{
 
 class CitiesRepositoryForSearchCityByName : CitiesRepositoryMock() {
 
-    val result = listOf(City(0L, "", "", null), City(0L, "", "", null))
 
     override fun searchCitiesByName(name: String): List<City> {
-        return result
+        return fakeResultIdsList
     }
 }

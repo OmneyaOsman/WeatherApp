@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.waether.app.R
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -37,13 +36,12 @@ class HomeFragment : Fragment() {
             search_progress_bar.visibility = if (it!!) View.VISIBLE else View.GONE
         })
 
-        viewModel.citiesResult.observe(this, Observer {
-            Toast.makeText(activity, "result size = ${it?.size}", Toast.LENGTH_LONG).show()
-        })
 
         search_button.setOnClickListener {
             viewModel.onSearchButtonClicked(search_edit_text.text?.toString())
         }
+
+//        results_recycler_view.adapter = CitySearchResultAdapter(this , cit)
 
 
     }

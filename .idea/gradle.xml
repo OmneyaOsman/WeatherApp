@@ -9,9 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/entities" />
             <option value="$PROJECT_DIR$/usecases" />
-            <option value="$PROJECT_DIR$/usescases" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
