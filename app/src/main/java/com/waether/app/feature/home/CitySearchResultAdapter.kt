@@ -3,45 +3,59 @@ package com.waether.app.feature.home
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import com.omni.entities.City
 import com.waether.app.R
+import java.io.Serializable
 
-class CitySearchResultViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    init {
+const val ACTION_SHOW_CITY_BUTTON_CLICKED = "ACTION_SHOW_CITY_BUTTON_CLICKED"
+const val EXTRA_CITY = "EXTRA_CITY"
 
-    }
+class CitySearchResultViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(city: City){
+    private val cityName by lazy { view.findViewById<TextView>(R.id.city_result_name_text_view) }
+    private val showButton by lazy { view.findViewById<Button>(R.id.show_city_weather_button) }
+
+    fun bind(city: City) {
+        cityName.text = city.name ?: ""
+        showButton.setOnClickListener {
+            Intent(ACTION_SHOW_CITY_BUTTON_CLICKED)
+                .putExtra(EXTRA_CITY, city as Serializable)
+                .also { view.context.sendBroadcast(it) }
+        }
 
     }
 
 }
 
-class CitySearchResultAdapter(private val lifecycleOwner :LifecycleOwner ,private val citiesResult: MutableLiveData<List<City>>) :
-    RecyclerView.Adapter<CitySearchResultViewHolder>() {
-
-
+class CitySearchResultsAdapter(
+    lifecycleOwner: LifecycleOwner,
+    private val citiesResult: MutableLiveData<List<City>>
+) : RecyclerView.Adapter<CitySearchResultViewHolder>() {
 
     init {
-        citiesResult.observe(lifecycleOwner , Observer {
+        citiesResult.observe(lifecycleOwner, Observer {
             notifyDataSetChanged()
         })
     }
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CitySearchResultViewHolder {
+
+    override fun onCreateViewHolder(parentView: ViewGroup, p1: Int): CitySearchResultViewHolder {
         return LayoutInflater
-            .from(p0.context)
-            .inflate(R.layout.city_list_item , p0 , false)
+            .from(parentView.context)
+            .inflate(R.layout.city_list_item, parentView, false)
             .let { CitySearchResultViewHolder(it) }
     }
 
-    override fun getItemCount() =
-        citiesResult.value?.size ?: 0
-
-    override fun onBindViewHolder(holder: CitySearchResultViewHolder, pos: Int) {
-        holder.bind(citiesResult.value!![pos])
+    override fun onBindViewHolder(viewHolder: CitySearchResultViewHolder, position: Int) {
+        viewHolder.bind(citiesResult.value!![position])
     }
+
+    override fun getItemCount() = citiesResult.value?.size ?: 0
+
 }
